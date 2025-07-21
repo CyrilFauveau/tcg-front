@@ -13,7 +13,7 @@ const config = getDefaultConfig({
 });
 
 const queryClient = new QueryClient();
-const CustomRainbowKitProvider = ({ children }) => {
+const CustomRainbowKitProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
