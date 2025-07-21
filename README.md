@@ -15,3 +15,7 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Vercel Deployment
+
+Live version accessible here: pokemon-app-eosin-seven.vercel.app
