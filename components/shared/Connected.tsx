@@ -1,7 +1,11 @@
+import OpenBooster from "./OpenBooster";
+import DisplayCollection from "./DisplayCollection";
+
 const Connected = () => {
   return (
     <>
-      Connected
+      <OpenBooster />
+      <DisplayCollection />
     </>
   );
 }
