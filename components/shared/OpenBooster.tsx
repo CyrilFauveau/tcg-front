@@ -1,3 +1,4 @@
+'use client';
 import { contractAbi, contractAddress } from "@/constants";
 import { useEffect } from "react";
 import { useAccount, useWaitForTransactionReceipt, useWriteContract } from "wagmi";

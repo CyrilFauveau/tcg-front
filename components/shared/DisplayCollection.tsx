@@ -1,3 +1,4 @@
+'use client';
 import { contractAbi, contractAddress } from "@/constants";
 import { useAccount, useReadContract } from "wagmi";
 import Image from 'next/image';
@@ -19,8 +20,6 @@ const DisplayCollection = () => {
 
     return (
         <>
-            <h2 className="mt-10 font-bold">All my cards</h2>
-
             {Array.isArray(collection) && collection[0]?.length > 0 ? (
                 <ul style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", padding: 0 }}>
                     {collection[0].map((cardId: number, amount: number) => (
