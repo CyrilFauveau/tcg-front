@@ -1,6 +1,6 @@
 'use client';
 import { useAccount } from "wagmi";
-import DisplayCollection from "@/components/shared/DisplayCollection";
+import DisplayCollection from "@/app/collection/DisplayCollection";
 import NotConnected from "@/components/shared/NotConnected";
 
 export default function CollectionPage() {

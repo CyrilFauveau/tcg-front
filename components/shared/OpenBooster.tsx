@@ -49,7 +49,7 @@ const OpenBooster = () => {
             </div>
 
             {error && (
-                <Alert className="mt-5 w-6/12">
+                <Alert className="mt-5 w-full">
                     <AlertTitle>Error</AlertTitle>
                     <AlertDescription>{error.message}</AlertDescription>
                 </Alert>
