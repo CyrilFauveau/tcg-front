@@ -1,21 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Application d'ouverture de boosters pokemon
 
-## Getting Started
+Ceci est un template, il peut s'appliquer à n'importe quelle collection de cartes de collection à ouvrir par boosters.\
+Une application web construite avec Next.js.\
+Contrat lié: https://sepolia.etherscan.io/address/0xFE0D18f975eb983f906afB2C6cDB5031e0A6bc5a
 
-First, run the development server:
+---
+
+## ✨ Fonctionnalités principales
+
+- En cours de rédaction
+
+---
+
+## 📆 Scripts disponibles
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev        # Développement local
+npm run build      # Build de production
+npm run start      # Démarrage du build
+npm run lint       # Linter avec ESLint
+npm run test       # Tests unitaires
+npm run test:watch # Tests en mode watch
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-## Vercel Deployment
+## 🔗 Stack technique
 
-Live version accessible here: pokemon-app-eosin-seven.vercel.app
+- **Next.js**
+- **React JS**
+- **TypeScript**
+- **React Query**
+- **RainbowKit**
+- **Wagmi**
+- **Viem**
+- **TailwindCSS**
+- **Jest**
+- **ESlint**
+- **PinoPretty**
+
+---
+
+## ✨ Licence
+
+Projet open source sous licence MIT.
