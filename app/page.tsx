@@ -1,7 +1,7 @@
 'use client';
-import Connected from "@/components/shared/Connected";
-import NotConnected from "@/components/shared/NotConnected";
 import { useAccount } from "wagmi";
+import OpenBooster from "@/components/shared/OpenBooster";
+import NotConnected from "@/components/shared/NotConnected";
 
 export default function Home() {
 
@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
        {isConnected ? (
-        <Connected />
+        <OpenBooster />
       ) : (
         <NotConnected />
       )}
