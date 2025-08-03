@@ -1,6 +1,6 @@
 'use client';
 import { useAccount } from "wagmi";
-import OpenBooster from "@/components/shared/OpenBooster";
+import OpenBooster from "@/app/home/OpenBooster";
 import NotConnected from "@/components/shared/NotConnected";
 
 export default function Home() {

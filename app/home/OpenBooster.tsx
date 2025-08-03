@@ -2,8 +2,8 @@
 import { contractAbi, contractAddress } from "@/constants";
 import { useEffect } from "react";
 import { useAccount, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
-import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
-import { Button } from "../ui/button";
+import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
+import { Button } from "../../components/ui/button";
 import { Toaster, toast } from "sonner";
 
 const OpenBooster = () => {
@@ -38,9 +38,9 @@ const OpenBooster = () => {
 
     return (
         <>
-            <div className="flex gap-5">
+            <div className="flex justify-center">
                 <Button
-                    className="mt-5"
+                    className="mt-3 bg-blue-700"
                     onClick={openBooster}
                     disabled={isPending || isConfirming}
                 >
@@ -49,7 +49,7 @@ const OpenBooster = () => {
             </div>
 
             {error && (
-                <Alert className="mt-5 w-full">
+                <Alert className="mt-3 w-full">
                     <AlertTitle>Error</AlertTitle>
                     <AlertDescription>{error.message}</AlertDescription>
                 </Alert>
