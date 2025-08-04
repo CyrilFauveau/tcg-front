@@ -7,7 +7,7 @@ Related contract: https://sepolia.etherscan.io/address/0xFE0D18f975eb983f906afB2
 
 ---
 
-## ✨ Main features
+## ⚙️ Main features
 
 - **Booster pack opening**
 - **Visualize your collection**
