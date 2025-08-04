@@ -3,8 +3,8 @@ import { Terminal } from "lucide-react";
 
 const NotConnected = () => {
   return (
-    <Alert className="bg-[#F29F05] w-full mt-10">
-      <Terminal className="h-4 w-4" />
+    <Alert className="bg-orange-400 w-full mt-3">
+      <Terminal />
       <AlertTitle>Warning</AlertTitle>
       <AlertDescription>
         Please connect your wallet.
