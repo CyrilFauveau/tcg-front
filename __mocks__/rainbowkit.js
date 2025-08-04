@@ -1,6 +1,6 @@
 // Mock for @rainbow-me/rainbowkit
 export const ConnectButton = () => {
-  return <div data-testid="connect-button">Connect Wallet</div>;
+  return <button data-testid="connect-button" type="button">Connect Wallet</button>;
 };
 
 export const RainbowKitProvider = ({ children }) => {

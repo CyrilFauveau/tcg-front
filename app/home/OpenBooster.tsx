@@ -60,7 +60,7 @@ const OpenBooster = () => {
 
             </div>
             
-            <div className="">
+            <div id="booster-timer">
                 <BoosterTimer />
             </div>
 
