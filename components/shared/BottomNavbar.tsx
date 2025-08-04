@@ -63,11 +63,11 @@ const BottomNavbar = () => {
               <Link 
                 href="/parameters" 
                 className={`flex flex-col items-center justify-center py-2 px-3 hover:bg-gray-50 transition-colors w-full ${
-                  pathname === "/parameters" ? 'font-bold text-blue-600' : ''
+                  pathname === "/parameters" ? 'font-bold text-black-600' : ''
                 }`}
               >
                 <Ellipsis className={`h-5 w-5 mb-2 mt-2 ${
-                  pathname === "/parameters" ? 'text-blue-600' : ''
+                  pathname === "/parameters" ? 'text-black-600' : ''
                 }`} />
               </Link>
             </NavigationMenuLink>

@@ -5,6 +5,8 @@ import { useAccount, useWaitForTransactionReceipt, useWriteContract } from "wagm
 import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
 import { Button } from "../../components/ui/button";
 import { Toaster, toast } from "sonner";
+import Image from 'next/image';
+import BoosterTimer from "@/components/shared/BoosterTimer";
 
 const OpenBooster = () => {
 
@@ -37,27 +39,41 @@ const OpenBooster = () => {
     }, [isConfirmed]);
 
     return (
-        <>
+        <div className="relative bg-neutral-100 rounded-xl p-5 mt-5 shadow-[inset_0_0_5px_0_rgba(0,0,0,0.1)]">
+            <figure className="flex justify-center p-5">
+                <Image
+                    src="/images/pokemon-booster.jpg"
+                    alt="booster image"
+                    width="180"
+                    height="0"
+                />
+            </figure>
+
             <div className="flex justify-center">
                 <Button
-                    className="mt-3 bg-blue-700"
+                    className="mt-5 rounded-full"
                     onClick={openBooster}
                     disabled={isPending || isConfirming}
                 >
                     {isPending || isConfirming ? "Opening..." : "Open a booster"}
                 </Button>
+
+            </div>
+            
+            <div className="">
+                <BoosterTimer />
             </div>
 
             {error && (
-                <Alert className="mt-3 w-full">
+                <Alert className="mt-5 w-full">
                     <AlertTitle>Error</AlertTitle>
                     <AlertDescription>{error.message}</AlertDescription>
                 </Alert>
             )}
 
             <Toaster />
-        </>
-    )
-}
+        </div>
+    );
+};
 
 export default OpenBooster;
