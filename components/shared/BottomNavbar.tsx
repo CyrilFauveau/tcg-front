@@ -76,6 +76,6 @@ const BottomNavbar = () => {
       </NavigationMenu>
     </div>
   );
-};
+}
 
 export default BottomNavbar; 
