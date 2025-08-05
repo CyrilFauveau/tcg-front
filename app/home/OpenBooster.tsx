@@ -6,11 +6,12 @@ import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
 import { Button } from "../../components/ui/button";
 import { Toaster, toast } from "sonner";
 import Image from 'next/image';
-import BoosterTimer from "@/components/shared/BoosterTimer";
+import BoosterTimer, { useBoosterTimer } from "@/components/shared/BoosterTimer";
 
 const OpenBooster = () => {
 
     const { address } = useAccount();
+    const { isReady } = useBoosterTimer(address);
 
     const { data: hash, isPending, error, writeContract } = useWriteContract();
 
@@ -53,7 +54,7 @@ const OpenBooster = () => {
                 <Button
                     className="mt-5 rounded-full"
                     onClick={openBooster}
-                    disabled={isPending || isConfirming}
+                    disabled={isPending || isConfirming || !isReady}
                 >
                     {isPending || isConfirming ? "Opening..." : "Open a booster"}
                 </Button>
