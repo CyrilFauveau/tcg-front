@@ -4,26 +4,15 @@ import { useAccount, useReadContract } from "wagmi";
 import { useEffect, useState } from "react";
 import { History } from "lucide-react";
 
-
-const BoosterTimer = () => {
+export function useBoosterTimer(address: string | undefined) {
+  
   const [currentTime, setCurrentTime] = useState(Math.floor(Date.now() / 1000));
-
-  const { address } = useAccount();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(Math.floor(Date.now() / 1000));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const { data: lastBoosterTimestamp } = useReadContract({
     address: contractAddress,
     abi: contractAbi,
     functionName: "lastBoosterTimestamp",
     args: [address],
-    account: address,
   });
 
   const { data: boosterDelay } = useReadContract({
@@ -31,8 +20,14 @@ const BoosterTimer = () => {
     abi: contractAbi,
     functionName: "BOOSTER_OPENING_DELAY",
     args: [],
-    account: address,
   });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(Math.floor(Date.now() / 1000));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const lastBoosterTimestampNum = typeof lastBoosterTimestamp === 'bigint'
     ? Number(lastBoosterTimestamp)
@@ -47,15 +42,21 @@ const BoosterTimer = () => {
       : 0;
 
   const timeLeft = lastBoosterTimestampNum + boosterDelayNum - currentTime;
-  
-  // Format time display
+  const isReady = timeLeft <= 0;
+
+  return { timeLeft, isReady };
+}
+
+const BoosterTimer = () => {
+
+  const { address } = useAccount();
+  const { timeLeft } = useBoosterTimer(address);
+
   const formatTimeLeft = (seconds: number) => {
     if (seconds <= 0) return "Ready!";
-    
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
-    
     return `${hours}h ${minutes}m ${secs}s`;
   };
 
