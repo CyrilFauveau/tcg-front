@@ -27,7 +27,7 @@ const OpenBooster = () => {
             console.error(e);
             toast("An error occurred during transaction");
         }
-    };
+    }
 
     const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
         hash,
@@ -75,6 +75,6 @@ const OpenBooster = () => {
             <Toaster />
         </div>
     );
-};
+}
 
 export default OpenBooster;

@@ -58,7 +58,7 @@ const BoosterTimer = () => {
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
     return `${hours}h ${minutes}m ${secs}s`;
-  };
+  }
 
   return (
     <div className="flex items-center justify-center p-2 text-sm">
