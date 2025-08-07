@@ -1,17 +1,15 @@
 'use client';
 import { useAccount } from "wagmi";
-import DisplayCollection from "@/app/collection/DisplayCollection";
 import NotConnected from "@/components/shared/NotConnected";
+import BoosterButton from "@/app/booster/BoosterButton";
 
-export default function CollectionPage() {
+export default function BoosterPage() {
   const { isConnected } = useAccount();
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-center text-2xl font-bold mb-10 mt-5">Collection</h1>
-      
       {isConnected ? (
-        <DisplayCollection />
+        <BoosterButton />
       ) : (
         <NotConnected />
       )}

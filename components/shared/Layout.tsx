@@ -3,7 +3,7 @@ import BottomNavbar from "@/components/shared/BottomNavbar";
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col">
       <Header />
       
       <div className="grow p-5 pb-20">
