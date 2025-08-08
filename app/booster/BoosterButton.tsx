@@ -41,7 +41,7 @@ const OpenBooster = () => {
 
     return (
         <>
-            <figure className="flex justify-center mt-10">
+            <figure className="flex justify-center mt-8">
                 <Image
                     src="/images/pokemon-booster.jpg"
                     alt="booster image"
