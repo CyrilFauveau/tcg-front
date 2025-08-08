@@ -1,31 +1,34 @@
-# Application d'ouverture de boosters pokemon
+# Pokémon booster pack opening application
 
-Ceci est un template, il peut s'appliquer à n'importe quelle collection de cartes de collection à ouvrir par boosters.\
-Une application web construite avec Next.js.\
-Contrat lié: https://sepolia.etherscan.io/address/0xFE0D18f975eb983f906afB2C6cDB5031e0A6bc5a
+This is a template that can be applied to any collection of trading cards to be opened from booster packs.\
+A web application built with Next.js.
 
----
-
-## ✨ Fonctionnalités principales
-
-- En cours de rédaction
+Related contract: https://sepolia.etherscan.io/address/0xFE0D18f975eb983f906afB2C6cDB5031e0A6bc5a
 
 ---
 
-## 📆 Scripts disponibles
+## ⚙️ Main features
+
+- **Booster pack opening**
+- **Visualize your collection**
+- ...
+
+---
+
+## 📆 Available scripts
 
 ```bash
-npm run dev        # Développement local
-npm run build      # Build de production
-npm run start      # Démarrage du build
-npm run lint       # Linter avec ESLint
-npm run test       # Tests unitaires
-npm run test:watch # Tests en mode watch
+npm run dev        # Local development
+npm run build      # Production build
+npm run start      # Start build
+npm run lint       # Linter with ESLint
+npm run test       # Unit tests
+npm run test:watch # Tests in watch mode
 ```
 
 ---
 
-## 🔗 Stack technique
+## 🔗 Technical stack
 
 - **Next.js**
 - **React JS**
@@ -41,6 +44,6 @@ npm run test:watch # Tests en mode watch
 
 ---
 
-## ✨ Licence
+## ✨ License
 
-Projet open source sous licence MIT.
+Open source project licensed under MIT.

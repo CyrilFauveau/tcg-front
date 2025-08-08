@@ -1,17 +1,27 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
-  return (
-    <div className="flex bg-neutral-100 p-5 pt-2 pb-2 shadow-md gap-5">
-      <div className="w-1/6 aspect-square bg-neutral-300 rounded-full">
 
-      </div>
+    const pathname = usePathname();
 
-      <div className="w-3/6 flex flex-col justify-center">
-        <ConnectButton />
-      </div>
-    </div>
-  );
+    const titleMap: Record<string, string> = {
+        "/booster": "Booster",
+        "/collection": "Collection",
+        "/community": "Community",
+        "/fight": "Battle Arena",
+      };
+    
+      const title = titleMap[pathname] || "Title";
+
+    return (
+        <div className="bg-white mb-5 pb-1 shadow-md">
+            <h1 className="text-center text-2xl font-bold p-5">
+                {title}
+            </h1>
+
+            <div className="h-1 bg-cyan-400"></div>
+        </div>
+    );
 }
 
 export default Header;

@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Header from '@/components/shared/Header';
+import Header from '@/components/shared/HomeHeader';
  
 describe('Header', () => {
   it('renders the wallet connect button', () => {

@@ -21,7 +21,7 @@ const getConfig = () => {
     });
   }
   return configInstance;
-};
+}
 
 const getQueryClient = () => {
   if (!queryClientInstance) {
@@ -29,7 +29,7 @@ const getQueryClient = () => {
     queryClientInstance = new QueryClient();
   }
   return queryClientInstance;
-};
+}
 
 const CustomRainbowKitProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [isClient, setIsClient] = useState(false);
@@ -50,7 +50,7 @@ const CustomRainbowKitProvider: React.FC<React.PropsWithChildren> = ({ children 
             </RainbowKitProvider>
         </QueryClientProvider>
     </WagmiProvider>
-  )
+  );
 }
 
 export default CustomRainbowKitProvider;
