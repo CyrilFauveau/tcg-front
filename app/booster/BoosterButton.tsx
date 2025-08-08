@@ -40,28 +40,28 @@ const OpenBooster = () => {
     }, [isConfirmed]);
 
     return (
-        <div className="relative bg-neutral-100 rounded-xl p-5 mt-5 shadow-[inset_0_0_5px_0_rgba(0,0,0,0.1)]">
-            <figure className="flex justify-center p-5">
+        <>
+            <figure className="flex justify-center mt-8">
                 <Image
                     src="/images/pokemon-booster.jpg"
                     alt="booster image"
-                    width="180"
+                    width="200"
                     height="0"
                 />
             </figure>
 
             <div className="flex justify-center">
                 <Button
-                    className="mt-5 rounded-full"
+                    className="rounded-full mt-10 p-5 pr-15 pl-15 bg-cyan-400 border-white border-3"
+                    style={{ boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)" }}
                     onClick={openBooster}
                     disabled={isPending || isConfirming || !isReady}
                 >
-                    {isPending || isConfirming ? "Opening..." : "Open a booster"}
+                    {isPending || isConfirming ? "Opening..." : "Open"}
                 </Button>
-
             </div>
             
-            <div id="booster-timer">
+            <div className="flex justify-center items-center mt-3">
                 <BoosterTimer />
             </div>
 
@@ -73,7 +73,7 @@ const OpenBooster = () => {
             )}
 
             <Toaster />
-        </div>
+        </>
     );
 }
 

@@ -2,7 +2,7 @@
 import { contractAbi, contractAddress } from "@/constants";
 import { useAccount, useReadContract } from "wagmi";
 import { useEffect, useState } from "react";
-import { History } from "lucide-react";
+import { Clock } from "lucide-react";
 
 export function useBoosterTimer(address: string | undefined) {
   
@@ -53,7 +53,7 @@ const BoosterTimer = () => {
   const { timeLeft } = useBoosterTimer(address);
 
   const formatTimeLeft = (seconds: number) => {
-    if (seconds <= 0) return "Ready!";
+    if (seconds <= 0) return "MAX";
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
@@ -61,9 +61,10 @@ const BoosterTimer = () => {
   }
 
   return (
-    <div className="flex items-center justify-center p-2 text-sm">
-        <History />{formatTimeLeft(timeLeft)}
-    </div>
+    <>
+      <Clock size="20" />
+      <span className="font-semibold">&nbsp;{formatTimeLeft(timeLeft)}</span>
+    </>
   );
 }
 
