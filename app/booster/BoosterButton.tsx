@@ -7,6 +7,7 @@ import { Button } from "../../components/ui/button";
 import { Toaster, toast } from "sonner";
 import Image from 'next/image';
 import BoosterTimer, { useBoosterTimer } from "@/components/shared/BoosterTimer";
+import { motion } from "motion/react";
 
 const OpenBooster = () => {
 
@@ -41,16 +42,32 @@ const OpenBooster = () => {
 
     return (
         <>
-            <figure className="flex justify-center mt-8">
+            <motion.div
+                className="flex justify-center mt-8"
+                initial={{ opacity: 1, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ 
+                    duration: 0.5,
+                    ease: "easeOut"
+                }}
+            >
                 <Image
                     src="/images/pokemon-booster.jpg"
                     alt="booster image"
                     width="200"
                     height="0"
                 />
-            </figure>
+            </motion.div>
 
-            <div className="flex justify-center">
+            <motion.div
+                className="flex justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ 
+                    duration: 0.3,
+                    ease: "easeOut"
+                }}
+            >
                 <Button
                     className="rounded-full mt-10 p-5 pr-15 pl-15 bg-cyan-400 border-white border-3"
                     style={{ boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)" }}
@@ -59,11 +76,19 @@ const OpenBooster = () => {
                 >
                     {isPending || isConfirming ? "Opening..." : "Open"}
                 </Button>
-            </div>
+            </motion.div>
             
-            <div className="flex justify-center items-center mt-3">
+            <motion.div 
+                className="flex justify-center items-center mt-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ 
+                    duration: 0.3,
+                    ease: "easeOut"
+                }}
+            >
                 <BoosterTimer />
-            </div>
+            </motion.div>
 
             {error && (
                 <Alert className="mt-5 w-full">
