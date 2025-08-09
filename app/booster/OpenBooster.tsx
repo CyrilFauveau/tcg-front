@@ -2,17 +2,19 @@
 import { contractAbi, contractAddress } from "@/constants";
 import { useEffect } from "react";
 import { useAccount, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
+import { decodeEventLog } from "viem";
 import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
-import { Button } from "../../components/ui/button";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 import Image from 'next/image';
 import BoosterTimer, { useBoosterTimer } from "@/components/shared/BoosterTimer";
 import { motion } from "motion/react";
+import { useRouter } from 'next/navigation';
+import MainButton from "@/components/ui/main-button";
 
 const OpenBooster = () => {
-
     const { address } = useAccount();
     const { isReady } = useBoosterTimer(address);
+    const router = useRouter();
 
     const { data: hash, isPending, error, writeContract } = useWriteContract();
 
@@ -30,15 +32,46 @@ const OpenBooster = () => {
         }
     }
 
-    const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
+    const { isLoading: isConfirming, isSuccess: isConfirmed, data: receipt } = useWaitForTransactionReceipt({
         hash,
     });
 
     useEffect(() => {
-        if (isConfirmed) {
-            toast("Booster has been opened successfully");
+        if (isConfirmed && receipt && address) {
+            const boosterOpenedEvent = receipt.logs.find(log => {
+                try {
+                    const decodedLog = decodeEventLog({
+                        abi: contractAbi,
+                        data: log.data,
+                        topics: log.topics,
+                    });
+                    return decodedLog.eventName === 'BoosterOpened';
+                } catch {
+                    return false;
+                }
+            });
+
+            if (boosterOpenedEvent) {
+                try {
+                    const decodedLog = decodeEventLog({
+                        abi: contractAbi,
+                        data: boosterOpenedEvent.data,
+                        topics: boosterOpenedEvent.topics,
+                    });
+                    
+                    if (decodedLog.eventName === 'BoosterOpened') {
+                        const args = decodedLog.args as unknown as { user: string; cardIds: number[] };
+                        if (args.user === address && args.cardIds) {
+                            const cardIdsParam = args.cardIds.join(',');
+                            router.push(`/booster/opened?cards=${cardIdsParam}&test=false`);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error decoding BoosterOpened event:', error);
+                }
+            }
         }
-    }, [isConfirmed]);
+    }, [isConfirmed, receipt, address, router]);
 
     return (
         <>
@@ -47,7 +80,7 @@ const OpenBooster = () => {
                 initial={{ opacity: 1, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ 
-                    duration: 0.5,
+                    duration: 0.3,
                     ease: "easeOut"
                 }}
             >
@@ -68,14 +101,13 @@ const OpenBooster = () => {
                     ease: "easeOut"
                 }}
             >
-                <Button
-                    className="rounded-full mt-10 p-5 pr-15 pl-15 bg-cyan-400 border-white border-3"
-                    style={{ boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)" }}
+                <MainButton
+                    className="mt-10"
                     onClick={openBooster}
                     disabled={isPending || isConfirming || !isReady}
                 >
                     {isPending || isConfirming ? "Opening..." : "Open"}
-                </Button>
+                </MainButton>
             </motion.div>
             
             <motion.div 
@@ -96,8 +128,6 @@ const OpenBooster = () => {
                     <AlertDescription>{error.message}</AlertDescription>
                 </Alert>
             )}
-
-            <Toaster />
         </>
     );
 }

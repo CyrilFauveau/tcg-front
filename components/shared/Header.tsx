@@ -7,6 +7,7 @@ const Header = () => {
 
     const titleMap: Record<string, string> = {
         "/booster": "Booster",
+        "/booster/opened": "Booster",
         "/collection": "Collection",
         "/community": "Community",
         "/fight": "Battle Arena",
