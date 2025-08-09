@@ -4,11 +4,13 @@ import { useAccount, useReadContract } from "wagmi";
 import { useState } from "react";
 import { motion } from "motion/react";
 import Image from 'next/image';
+import CardModal from "@/components/shared/CardModal";
 
 const DisplayCollection = () => {
 
     const { address } = useAccount();
     const [displayAll, setDisplayAll] = useState(false);
+    const [selectedCard, setSelectedCard] = useState<number | null>(null);
 
     const { data: collection, isLoading, error } = useReadContract({
         address: contractAddress,
@@ -38,6 +40,16 @@ const DisplayCollection = () => {
         setDisplayAll((prev) => !prev);
     }
 
+    const handleCardClick = (cardId: number) => {
+        if (ownedMap[cardId] && ownedMap[cardId] > 0) {
+            setSelectedCard(cardId);
+        }
+    }
+
+    const closeModal = () => {
+        setSelectedCard(null);
+    }
+
     const cards = [];
     for (let cardId = 1; cardId <= Number(totalCards); cardId++) {
         const amount = ownedMap[cardId] || 0;
@@ -45,8 +57,9 @@ const DisplayCollection = () => {
         if (displayAll ||owned) {
             cards.push(
                 <li
-                    className="list-none relative"
+                    className="list-none relative cursor-pointer"
                     key={cardId}
+                    onClick={() => handleCardClick(cardId)}
                 >
                     {owned ? (
                         <>
@@ -110,6 +123,12 @@ const DisplayCollection = () => {
             <ul className={`grid ${displayAll ? "grid-cols-5 gap-1" : "grid-cols-3 gap-2"} p-0`}>
                 {cards}
             </ul>
+
+            <CardModal
+                cardId={selectedCard!}
+                isOpen={selectedCard !== null}
+                onClose={closeModal}
+            />
         </>
     );
 }

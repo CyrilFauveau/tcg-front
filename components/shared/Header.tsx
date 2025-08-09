@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { usePathname } from "next/navigation";
 
 const Header = () => {
@@ -6,6 +7,7 @@ const Header = () => {
 
     const titleMap: Record<string, string> = {
         "/booster": "Booster",
+        "/booster/opened": "Booster",
         "/collection": "Collection",
         "/community": "Community",
         "/fight": "Battle Arena",
@@ -19,7 +21,16 @@ const Header = () => {
                 {title}
             </h1>
 
-            <div className="h-1 bg-cyan-400"></div>
+            <motion.div
+                className="h-1 bg-cyan-400"
+                initial={{ width: 0 }}
+                animate={{ width: "100%" }}
+                transition={{ 
+                    duration: 0.5,
+                    ease: "easeOut"
+                }}>
+
+            </motion.div>
         </div>
     );
 }
