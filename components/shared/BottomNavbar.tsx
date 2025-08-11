@@ -16,29 +16,25 @@ const BottomNavbar = () => {
     {
       href: "/",
       icon: Home,
-      label: "Home",
     },
     {
       href: "/collection",
       icon: Book,
-      label: "Collection",
     },
     {
       href: "/community",
       icon: Users,
-      label: "Community",
     },
     {
       href: "/fight",
       icon: Swords,
-      label: "Fight",
     },
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
-      <NavigationMenu className="w-full max-w-full">
-        <NavigationMenuList className="flex justify-around w-full">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-10">
+      <NavigationMenu className="w-full max-w-full grid grid-col-5 justify-normal">
+        <NavigationMenuList className="flex justify-around w-full gap-0">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -76,6 +72,6 @@ const BottomNavbar = () => {
       </NavigationMenu>
     </div>
   );
-};
+}
 
 export default BottomNavbar; 
