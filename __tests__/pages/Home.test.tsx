@@ -2,14 +2,12 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import Home from '@/app/page';
 
-// Mock wagmi hooks
 jest.mock('wagmi', () => ({
     useAccount: () => ({
         isConnected: true,
     }),
 }));
 
-// Mock Booster component
 jest.mock('@/app/home/Booster', () => ({
     __esModule: true,
     default: () => <div data-testid="booster-component">Booster Component</div>,

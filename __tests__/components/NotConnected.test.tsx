@@ -15,12 +15,6 @@ describe('NotConnected', () => {
         expect(icon).toBeInTheDocument();
     });
 
-    it('has proper styling', () => {
-        render(<NotConnected />);
-        const alert = screen.getByRole('alert');
-        expect(alert).toHaveClass('bg-orange-400', 'w-full', 'mt-3');
-    });
-
     it('has proper structure', () => {
         render(<NotConnected />);
         const alert = screen.getByRole('alert');

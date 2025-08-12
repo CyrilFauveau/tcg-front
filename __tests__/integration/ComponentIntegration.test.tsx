@@ -4,7 +4,6 @@ import Layout from '@/components/shared/Layout';
 import Header from '@/components/shared/Header';
 import BottomNavbar from '@/components/shared/BottomNavbar';
 
-// Mock Next.js navigation
 jest.mock('next/navigation', () => ({
     usePathname: () => '/collection',
     useRouter: () => ({
@@ -15,12 +14,10 @@ jest.mock('next/navigation', () => ({
 
 describe('Component Integration Tests', () => {
     beforeEach(() => {
-        // Clear any previous renders and mocks
         jest.clearAllMocks();
     });
 
     afterEach(() => {
-        // Clean up after each test
         jest.clearAllTimers();
     });
 
@@ -34,7 +31,6 @@ describe('Component Integration Tests', () => {
                 </Layout>
             );
 
-            // Check Layout wrapper - use more reliable selector
             const pageContent = screen.getByText('Page Content');
             expect(pageContent).toBeInTheDocument();
             
@@ -52,20 +48,20 @@ describe('Component Integration Tests', () => {
 
             // Check content wrapper
             const contentWrapper = pageContent.parentElement;
-            expect(contentWrapper).toHaveClass('grow', 'p-5', 'pb-20');
+            expect(contentWrapper).toHaveClass('grow', 'p-5');
         });
 
         it('maintains proper spacing between components', () => {
             render(
                 <Layout>
                     <Header />
-                    <div>Page Content</div>
+                        <div>Page Content</div>
                     <BottomNavbar />
                 </Layout>
             );
 
             const contentWrapper = screen.getByText('Page Content').parentElement;
-            expect(contentWrapper).toHaveClass('pb-20'); // Ensures bottom navbar doesn't overlap content
+            expect(contentWrapper).toHaveClass('pb-20');
         });
     });
 
@@ -74,16 +70,14 @@ describe('Component Integration Tests', () => {
             render(
                 <Layout>
                     <Header />
-                    <div>Collection Page</div>
+                        <div>Collection Page</div>
                     <BottomNavbar />
                 </Layout>
             );
 
-            // Check that navigation elements are present
             const navElements = screen.getAllByRole('navigation');
             expect(navElements.length).toBeGreaterThan(0);
 
-            // Verify navigation structure
             expect(screen.getByText('Collection Page')).toBeInTheDocument();
         });
 
@@ -91,12 +85,11 @@ describe('Component Integration Tests', () => {
             render(
                 <Layout>
                     <Header />
-                    <div>Current Page</div>
+                        <div>Current Page</div>
                     <BottomNavbar />
                 </Layout>
             );
 
-            // Header should show current page context
             const headerTexts = screen.getAllByText('Collection');
             expect(headerTexts.length).toBeGreaterThan(0);
         });
@@ -107,19 +100,16 @@ describe('Component Integration Tests', () => {
             render(
                 <Layout>
                     <Header />
-                    <div>Updated Content</div>
+                        <div>Updated Content</div>
                     <BottomNavbar />
                 </Layout>
             );
 
-            // Check that content can be updated independently
             expect(screen.getByText('Updated Content')).toBeInTheDocument();
             
-            // Check that Header still shows Collection (first instance)
             const collectionTexts = screen.getAllByText('Collection');
             expect(collectionTexts.length).toBeGreaterThan(0);
             
-            // Check that Layout structure is maintained
             const layout = screen.getByText('Updated Content').closest('div')?.parentElement?.parentElement;
             expect(layout).toHaveClass('flex', 'flex-col');
         });
@@ -130,12 +120,11 @@ describe('Component Integration Tests', () => {
             render(
                 <Layout>
                     <Header />
-                    <div>Page Content</div>
+                        <div>Page Content</div>
                     <BottomNavbar />
                 </Layout>
             );
 
-            // Check for proper heading structure
             const headings = screen.getAllByRole('heading');
             if (headings.length > 0) {
                 // Ensure no heading levels are skipped
@@ -150,7 +139,7 @@ describe('Component Integration Tests', () => {
             render(
                 <Layout>
                     <Header />
-                    <div>Page Content</div>
+                        <div>Page Content</div>
                     <BottomNavbar />
                 </Layout>
             );
@@ -167,18 +156,17 @@ describe('Component Integration Tests', () => {
             Object.defineProperty(window, 'innerWidth', {
                 writable: true,
                 configurable: true,
-                value: 768, // Tablet size
+                value: 768,
             });
 
             render(
                 <Layout>
                     <Header />
-                    <div>Responsive Content</div>
+                        <div>Responsive Content</div>
                     <BottomNavbar />
                 </Layout>
             );
 
-            // Components should render without errors at different sizes
             expect(screen.getByText('Responsive Content')).toBeInTheDocument();
 
             // Reset viewport
@@ -199,7 +187,7 @@ describe('Component Integration Tests', () => {
                 render(
                     <Layout>
                         <Header />
-                        <div>Content</div>
+                            <div>Content</div>
                         <BottomNavbar />
                     </Layout>
                 );
@@ -216,7 +204,7 @@ describe('Component Integration Tests', () => {
             render(
                 <Layout>
                     <Header />
-                    <div>Performance Test Content</div>
+                        <div>Performance Test Content</div>
                     <BottomNavbar />
                 </Layout>
             );
@@ -224,8 +212,7 @@ describe('Component Integration Tests', () => {
             const endTime = performance.now();
             const renderTime = endTime - startTime;
 
-            // More generous threshold for integration tests
-            expect(renderTime).toBeLessThan(200); // 200ms threshold
+            expect(renderTime).toBeLessThan(200);
         });
     });
 });

@@ -2,7 +2,6 @@ import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import CardModal from '@/components/shared/CardModal';
 
-// Mock motion/react more comprehensively
 jest.mock('motion/react', () => ({
     motion: {
         div: ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => (
@@ -12,7 +11,6 @@ jest.mock('motion/react', () => ({
     AnimatePresence: ({ children }: { children: React.ReactNode }) => <div data-animate-presence="true">{children}</div>,
 }));
 
-// Mock next/image more comprehensively
 jest.mock('next/image', () => ({
     __esModule: true,
     default: ({ src, alt, ...props }: { src: string; alt: string; [key: string]: unknown }) => (
@@ -20,7 +18,6 @@ jest.mock('next/image', () => ({
     ),
 }));
 
-// Mock document.body.style to prevent hanging
 Object.defineProperty(document.body, 'style', {
     value: {
         overflow: '',
@@ -138,7 +135,6 @@ describe('CardModal Component', () => {
             render(<CardModal {...mockProps} />);
             const closeIcon = screen.getByTestId('close-icon');
             
-            // Test that the close icon is present
             expect(closeIcon).toBeInTheDocument();
         });
 
@@ -146,7 +142,6 @@ describe('CardModal Component', () => {
             render(<CardModal {...mockProps} />);
             const closeIcon = screen.getByTestId('close-icon');
             
-            // Test that the close icon is present
             expect(closeIcon).toBeInTheDocument();
         });
     });
@@ -161,7 +156,6 @@ describe('CardModal Component', () => {
                 }),
             };
 
-            // Just test that the component renders without crashing
             expect(() => render(<CardModal {...propsWithError} />)).not.toThrow();
             consoleSpy.mockRestore();
         });
@@ -170,7 +164,6 @@ describe('CardModal Component', () => {
             render(<CardModal {...mockProps} />);
             const closeIcon = screen.getByTestId('close-icon');
             
-            // Test that the close icon is present and clickable
             expect(closeIcon).toBeInTheDocument();
             expect(closeIcon).toHaveAttribute('data-testid', 'close-icon');
         });
@@ -178,12 +171,10 @@ describe('CardModal Component', () => {
 
     describe('Props Validation', () => {
         it('handles missing cardId prop gracefully', () => {
-            // Test that the component handles missing props gracefully
             expect(() => render(<CardModal isOpen={true} onClose={jest.fn()} cardId={undefined as unknown as number} />)).not.toThrow();
         });
 
         it('handles missing isOpen prop gracefully', () => {
-            // Test that the component handles missing props gracefully
             expect(() => render(<CardModal cardId={1} onClose={jest.fn()} isOpen={undefined as unknown as boolean} />)).not.toThrow();
         });
     });

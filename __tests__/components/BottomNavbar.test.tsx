@@ -2,12 +2,10 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import BottomNavbar from '@/components/shared/BottomNavbar';
 
-// Mock Next.js navigation
 jest.mock('next/navigation', () => ({
     usePathname: () => '/',
 }));
 
-// Mock Next.js Link component
 jest.mock('next/link', () => {
     return function MockLink({ children, href, ...props }: { children: React.ReactNode; href: string; [key: string]: unknown }) {
         return <a href={href} {...props}>{children}</a>;

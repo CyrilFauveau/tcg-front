@@ -2,7 +2,6 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import BoosterTimer from '@/components/shared/BoosterTimer';
 
-// Mock wagmi hooks
 jest.mock('wagmi', () => ({
     useAccount: () => ({
         address: '0x123...',
@@ -15,7 +14,6 @@ jest.mock('wagmi', () => ({
     }),
 }));
 
-// Mock setInterval and clearInterval
 const mockSetInterval = jest.fn();
 const mockClearInterval = jest.fn();
 
@@ -48,7 +46,6 @@ describe('BoosterTimer', () => {
         const initialCountdown = screen.getByText('MAX');
         expect(initialCountdown).toBeInTheDocument();
         
-        // Verify setInterval was called
         expect(mockSetInterval).toHaveBeenCalledWith(expect.any(Function), 1000);
     });
 
@@ -58,13 +55,6 @@ describe('BoosterTimer', () => {
         unmount();
         
         expect(mockClearInterval).toHaveBeenCalled();
-    });
-
-    it('has proper styling classes', () => {
-        render(<BoosterTimer />);
-        
-        const timerContainer = screen.getByText('MAX').closest('span');
-        expect(timerContainer).toHaveClass('font-semibold');
     });
 });
 

@@ -5,7 +5,6 @@ import Header from '@/components/shared/Header';
 import BottomNavbar from '@/components/shared/BottomNavbar';
 import CardModal from '@/components/shared/CardModal';
 
-// Mock dependencies
 jest.mock('next/navigation', () => ({
     usePathname: () => '/collection',
     useRouter: () => ({
@@ -28,12 +27,10 @@ jest.mock('next/image', () => ({
 
 describe('Performance Tests', () => {
     beforeEach(() => {
-        // Reset any global state
         jest.clearAllMocks();
     });
 
     afterEach(() => {
-        // Clean up after each test
         cleanup();
     });
 
@@ -50,7 +47,6 @@ describe('Performance Tests', () => {
             const endTime = performance.now();
             const renderTime = endTime - startTime;
             
-            // More generous threshold for test environment
             expect(renderTime).toBeLessThan(500);
             expect(screen.getByText('Performance Test Content')).toBeInTheDocument();
         });
@@ -63,7 +59,6 @@ describe('Performance Tests', () => {
             const endTime = performance.now();
             const renderTime = endTime - startTime;
             
-            // More generous threshold
             expect(renderTime).toBeLessThan(300);
             const headerTexts = screen.getAllByText('Collection');
             expect(headerTexts.length).toBeGreaterThan(0);
@@ -77,7 +72,6 @@ describe('Performance Tests', () => {
             const endTime = performance.now();
             const renderTime = endTime - startTime;
             
-            // More generous threshold
             expect(renderTime).toBeLessThan(300);
             const navElements = screen.getAllByRole('navigation');
             expect(navElements.length).toBeGreaterThan(0);
@@ -97,7 +91,6 @@ describe('Performance Tests', () => {
             const endTime = performance.now();
             const renderTime = endTime - startTime;
             
-            // More generous threshold
             expect(renderTime).toBeLessThan(400);
             expect(screen.getByAltText('Card #1')).toBeInTheDocument();
         });
@@ -110,7 +103,7 @@ describe('Performance Tests', () => {
             render(
                 <Layout>
                     <Header />
-                    <div>Content</div>
+                        <div>Content</div>
                     <BottomNavbar />
                 </Layout>
             );
@@ -118,7 +111,6 @@ describe('Performance Tests', () => {
             const endTime = performance.now();
             const renderTime = endTime - startTime;
             
-            // More generous threshold for complex rendering
             expect(renderTime).toBeLessThan(800);
             
             expect(screen.getByText('Content')).toBeInTheDocument();
@@ -132,7 +124,7 @@ describe('Performance Tests', () => {
             const { rerender } = render(
                 <Layout>
                     <Header />
-                    <div>Initial Content</div>
+                        <div>Initial Content</div>
                     <BottomNavbar />
                 </Layout>
             );
@@ -144,7 +136,7 @@ describe('Performance Tests', () => {
                 rerender(
                     <Layout>
                         <Header />
-                        <div>Content {i}</div>
+                            <div>Content {i}</div>
                         <BottomNavbar />
                     </Layout>
                 );
@@ -153,7 +145,6 @@ describe('Performance Tests', () => {
             const endTime = performance.now();
             const totalTime = endTime - startTime;
             
-            // More generous threshold for re-renders
             expect(totalTime).toBeLessThan(1000);
             expect(screen.getByText('Content 4')).toBeInTheDocument();
         });
@@ -161,7 +152,6 @@ describe('Performance Tests', () => {
 
     describe('Memory Usage', () => {
         it('does not create memory leaks during re-renders', () => {
-            // Define proper types for performance.memory
             interface PerformanceMemory {
                 usedJSHeapSize: number;
                 totalJSHeapSize: number;
@@ -195,7 +185,7 @@ describe('Performance Tests', () => {
                 rerender(
                     <Layout>
                         <Header />
-                        <div>Memory Test {i}</div>
+                            <div>Memory Test {i}</div>
                         <BottomNavbar />
                     </Layout>
                 );
@@ -225,8 +215,8 @@ describe('Performance Tests', () => {
 
     describe('Network Performance', () => {
         it('handles slow network conditions gracefully', () => {
-            // Mock slow network
             const originalFetch = global.fetch;
+
             global.fetch = jest.fn(() => 
                 new Promise(resolve => 
                     setTimeout(() => resolve({ 
@@ -254,7 +244,7 @@ describe('Performance Tests', () => {
             render(
                 <Layout>
                     <Header />
-                    <div>Network Test</div>
+                        <div>Network Test</div>
                     <BottomNavbar />
                 </Layout>
             );
@@ -262,10 +252,8 @@ describe('Performance Tests', () => {
             const endTime = performance.now();
             const renderTime = endTime - startTime;
             
-            // More generous threshold for network tests
             expect(renderTime).toBeLessThan(600);
             
-            // Restore original fetch
             global.fetch = originalFetch;
         });
 
@@ -275,7 +263,7 @@ describe('Performance Tests', () => {
             render(
                 <Layout>
                     <Header />
-                    <div>Animation Test</div>
+                        <div>Animation Test</div>
                     <BottomNavbar />
                 </Layout>
             );
@@ -283,7 +271,6 @@ describe('Performance Tests', () => {
             const endTime = performance.now();
             const renderTime = endTime - startTime;
             
-            // More generous threshold for animation tests
             expect(renderTime).toBeLessThan(500);
         });
     });

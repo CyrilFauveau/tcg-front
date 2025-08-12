@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
-// Mock the entire CustomRainbowKitProvider module
 jest.mock('@/app/CustomRainbowKitProvider', () => ({
     __esModule: true,
     default: ({ children }: { children: React.ReactNode }) => (
@@ -17,7 +16,6 @@ jest.mock('@/app/CustomRainbowKitProvider', () => ({
     ),
 }));
 
-// Import after mocking
 import CustomRainbowKitProvider from '@/app/CustomRainbowKitProvider';
 
 describe('CustomRainbowKitProvider', () => {
