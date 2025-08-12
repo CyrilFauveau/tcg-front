@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
     'http://192.168.1.28:3000',
     'http://192.168.1.28:3001'
   ],
+  // Skip tests during build for production
+  experimental: {
+    skipTrailingSlashRedirect: true,
+  },
 };
 
 export default nextConfig;
