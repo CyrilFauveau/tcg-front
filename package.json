@@ -9,7 +9,8 @@
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:prod": "jest --config jest.config.prod.ts"
+    "test:prod": "jest --config jest.config.prod.ts",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-navigation-menu": "^1.2.13",
