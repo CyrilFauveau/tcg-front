@@ -38,6 +38,7 @@ const CardModal = ({ cardId, isOpen, onClose }: CardModalProps) => {
                 <div 
                     className="fixed inset-0 backdrop-blur-xs flex items-end z-20"
                     onClick={onClose}
+                    data-testid="modal-backdrop"
                 >
                     <motion.div 
                         className="w-full bg-white"
@@ -70,7 +71,7 @@ const CardModal = ({ cardId, isOpen, onClose }: CardModalProps) => {
                                 className="bg-white p-3 rounded-full"
                                 style={{boxShadow: "0 0 10px rgba(0,0,0,0.2)"}}
                             >
-                               <X onClick={onClose} className="" size={24} />
+                               <X onClick={onClose} className="" size={24} data-testid="close-icon" />
                             </div>
                         </div>
                     </motion.div>

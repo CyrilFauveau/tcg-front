@@ -63,7 +63,7 @@ const OpenBooster = () => {
                         const args = decodedLog.args as unknown as { user: string; cardIds: number[] };
                         if (args.user === address && args.cardIds) {
                             const cardIdsParam = args.cardIds.join(',');
-                            router.push(`/booster/opened?cards=${cardIdsParam}&test=false`);
+                            router.push(`/booster/opened?cards=${cardIdsParam}`);
                         }
                     }
                 } catch (error) {
@@ -131,5 +131,6 @@ const OpenBooster = () => {
         </>
     );
 }
+
 
 export default OpenBooster;
