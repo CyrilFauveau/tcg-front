@@ -12,6 +12,7 @@ const Back = () => {
             style={{
                 boxShadow: "0 0 10px rgba(0,0,0,0.2)",
             }}
+            data-testid="back-button"
         >
             <CornerDownLeft />
         </div>

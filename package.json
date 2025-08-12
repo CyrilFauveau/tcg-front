@@ -9,6 +9,7 @@
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:prod": "jest --config jest.config.prod.ts",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
