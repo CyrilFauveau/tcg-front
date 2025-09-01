@@ -1,5 +1,7 @@
 # Pokémon booster pack opening application
 
+Only mobile version available for now.
+
 This is a template that can be applied to any collection of trading cards to be opened from booster packs.\
 A web application built with Next.js.
 
